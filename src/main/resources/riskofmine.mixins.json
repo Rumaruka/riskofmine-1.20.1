@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.rumaruka.riskofmine.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "target": "@env(DEFAULT)",
+  "mixins": [
+    "EntityOverloadingMixin",
+    "LevelRendererMixin",
+    "LocalPlayerMixin",
+    "MinecraftMixin",
+    "PlayerRendererMixin"
+  ],
+  "refmap": "riskofmine.mixin-refmap.json",
+  "minVersion": "0.8"
+}

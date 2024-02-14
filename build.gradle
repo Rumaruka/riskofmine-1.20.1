@@ -1,0 +1,308 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url "https://plugins.gradle.org/m2/" }
+        jcenter()
+        mavenCentral()
+        maven {
+            name = 'sponge'
+            url = 'https://repo.spongepowered.org/maven'
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.+"
+        classpath 'org.spongepowered:mixingradle:0.7.+'
+    }
+}
+
+
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.gradle' version '[6.0.18,6.2)'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
+
+}
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+apply plugin: "com.matthewprenger.cursegradle"
+apply plugin: 'org.spongepowered.mixin'
+version = mod_version
+group = mod_group_id
+ext.configFile = file("build.txt")
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse(prop)
+    project.ext.hasConfig = { key ->
+        return config.isSet(key);
+    }
+}
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+minecraft {
+
+    mappings channel: mapping_channel, version: mapping_version
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    copyIdeResources = true
+
+
+    runs {
+        configureEach {
+            workingDirectory project.file("run/${it.name}")
+
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            arg "-mixin.config=riskofmine.mixins.json"
+
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        client {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            arg "-mixin.config=riskofmine.mixins.json"
+        }
+
+        server {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            args '--nogui'
+            arg "-mixin.config=riskofmine.mixins.json"
+        }
+
+
+        gameTestServer {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            arg "-mixin.config=riskofmine.mixins.json"
+        }
+
+        data {
+            arg "-mixin.config=riskofmine.mixins.json"
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
+    }
+}
+mixin {
+    add sourceSets.main, "riskofmine.mixin-refmap.json"
+}
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    maven { url = "https://repo.repsy.io/mvn/timeconqueror/mc/" }
+    maven { url = 'https://thedarkcolour.github.io/KotlinForForge/' }
+    maven {
+        url = "https://maven.theillusivec4.top/"
+    }
+
+    maven {
+        // location of the maven that hosts JEI files before January 2023
+        name = "Progwml6's maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+    maven {
+        // location of a maven that hosts all files on CurseForge
+        name 'CurseMaven'
+        url 'https://www.cursemaven.com/'
+    }
+}
+
+
+def tcVersion = tc_version_range.replace(Map.of(",", "", "[", "", ")", ""))
+dependencies {
+
+    minecraft "net.neoforged:forge:${minecraft_version}-${neo_version}"
+
+    implementation fg.deobf("ru.timeconqueror:TimeCore:${minecraft_version}-${tcVersion}")
+    implementation 'thedarkcolour:kotlinforforge:4.4.0'
+
+
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
+    // at runtime, use the full JEI jar for Forge
+    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
+
+
+    annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+            neo_version         : neo_version, neo_version_range: neo_version_range,
+            loader_version_range: loader_version_range,
+            mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors         : mod_authors, mod_description: mod_description, pack_format_number: pack_format_number,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : mod_authors,
+                'Specification-Version'   : '1', // We are version 1 of ourselves
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : mod_authors,
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs"            : "riskofmine.mixins.json"
+        ])
+    }
+
+
+    finalizedBy 'reobfJar'
+}
+
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+
+curseforge {
+    apiKey = System.env.CURSEFORGE_TOKEN != null ? System.env.CURSEFORGE_TOKEN : "NONE"
+    project {
+        id = config.cf_project
+        changelogType = 'html'
+        changelog = changeLogs
+        releaseType = config.release_type
+        addGameVersion config.mc_version
+        addGameVersion "Forge"
+        addGameVersion "NeoForge"
+        mainArtifact(jar) {
+            displayName = "[${minecraft_version}] ${mod_name} - ${config.mod_version}"
+        }
+
+        def reqDeps = new ArrayList()
+        def optDeps = new ArrayList()
+        def incompat = new ArrayList()
+        def embLibs = new ArrayList()
+
+        def mods = config.required_mods.split(";")
+        if (mods.length > 0 && (mods.length > 1 || !mods[0].isEmpty()))
+            for (final def one in mods) {
+                if (one.isBlank()) continue
+                if (one.startsWith("@")) {
+                    def pars = one.substring(1).split(":", 2)
+                    if (pars[0].equalsIgnoreCase("c")) {
+                        reqDeps.add pars[1].trim()
+                    }
+                } else
+                    reqDeps.add one.trim()
+            }
+
+        mods = config.optional_mods.split(";")
+        if (mods.length > 0 && (mods.length > 1 || !mods[0].isEmpty()))
+            for (final def one in mods) {
+                if (one.isBlank()) continue
+                if (one.startsWith("@")) {
+                    def pars = one.substring(1).split(":", 2)
+                    if (pars[0].equalsIgnoreCase("c")) {
+                        optDeps.add pars[1].trim()
+                    }
+                } else
+                    optDeps.add one.trim()
+            }
+
+        mods = config.incompatible_mods.split(";")
+        if (mods.length > 0 && (mods.length > 1 || !mods[0].isEmpty()))
+            for (final def one in mods) {
+                if (one.isBlank()) continue
+                if (one.startsWith("@")) {
+                    def pars = one.substring(1).split(":", 2)
+                    if (pars[0].equalsIgnoreCase("c")) {
+                        incompat.add pars[1].trim()
+                    }
+                } else
+                    incompat.add one.trim()
+            }
+
+        mods = config.embedded_mods.split(";")
+        if (mods.length > 0 && (mods.length > 1 || !mods[0].isEmpty()))
+            for (final def one in mods) {
+                if (one.isBlank()) continue
+                if (one.startsWith("@")) {
+                    def pars = one.substring(1).split(":", 2)
+                    if (pars[0].equalsIgnoreCase("c")) {
+                        embLibs.add pars[1].trim()
+                    }
+                } else
+                    embLibs.add one.trim()
+            }
+
+        if (reqDeps.size() > 0 || optDeps.size() > 0 || incompat.size() > 0 || embLibs.size() > 0) {
+            relations {
+                reqDeps.each { dep ->
+                    requiredDependency dep
+                }
+                optDeps.each { dep ->
+                    optionalDependency dep
+                }
+                incompat.each { dep ->
+                    incompatible dep
+                }
+                embLibs.each { dep ->
+                    embeddedLibrary dep
+                }
+            }
+        }
+    }
+}
+tasks.register('buildAndUploadMod') {
+    group = "upload"
+    dependsOn "curseforge${config.cf_project}"
+
+    doLast {
+        println "Upload complete."
+    }
+}
+
+afterEvaluate {
+    if (!config.maven_url.isEmpty()) {
+        tasks["curseforge${config.cf_project}"].dependsOn.add(publish)
+    }
+}
+import net.minecraftforge.gradle.common.tasks.SignJar
