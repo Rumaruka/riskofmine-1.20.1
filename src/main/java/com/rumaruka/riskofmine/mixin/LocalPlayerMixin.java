@@ -24,9 +24,9 @@ public abstract class LocalPlayerMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo info) {
         LocalPlayer player = (LocalPlayer) (Object) this;
-        if (ROMUtils.checkInventory(player, new ItemStack(ROMItems.HOPOO_FEATHER))) {
+        if (ROMUtils.checkInventory(player, ROMItems.HOPOO_FEATHER.getDefaultInstance())) {
             if (player.onGround() || player.onClimbable()) {
-                jumpCount = ROMUtils.counting(player, new ItemStack(ROMItems.HOPOO_FEATHER));
+                jumpCount = ROMUtils.counting(player, ROMItems.HOPOO_FEATHER.getDefaultInstance());
 
             } else if (!jumpedLastTick && jumpCount > 0 && player.getDeltaMovement().y < 0) {
                 if (player.input.jumping && !player.getAbilities().flying) {
@@ -42,7 +42,7 @@ public abstract class LocalPlayerMixin {
             }
             jumpedLastTick = player.input.jumping;
         }
-        if (ROMUtils.checkCurios(player, new ItemStack(ROMItems.HOPOO_FEATHER))) {
+        if (ROMUtils.checkCurios(player, ROMItems.HOPOO_FEATHER.getDefaultInstance())) {
             if (player.onGround() || player.onClimbable()) {
                 jumpCount = ROMUtils.countingCurio(player, ROMItems.HOPOO_FEATHER);
 

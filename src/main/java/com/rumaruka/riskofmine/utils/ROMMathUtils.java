@@ -1,5 +1,7 @@
 package com.rumaruka.riskofmine.utils;
 
+import net.minecraft.CrashReport;
+
 public class ROMMathUtils {
     /**
      * This code contains several math methods.
@@ -20,7 +22,7 @@ public class ROMMathUtils {
 
     public static float divide(float x, float y) {
         if (y == 0) {
-            throw new ArithmeticException("Divide Null");
+            new CrashReport("Divide Null", new ArithmeticException("Divide don`t null"));
         }
         return x / y;
     }

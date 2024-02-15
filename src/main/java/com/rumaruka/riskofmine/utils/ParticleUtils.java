@@ -14,6 +14,6 @@ public class ParticleUtils {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerParticle(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ROMParticles.FOCUS_CRYSTAL.get(), FocusCrystalFX.Factory::new);
-        //   event.register(ROMParticles.STUN_PARTICLES.get(), StunFX.Factory::new);
+
     }
 }

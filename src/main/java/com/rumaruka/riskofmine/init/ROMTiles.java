@@ -41,6 +41,7 @@ public class ROMTiles {
 
             REGISTER.registerSingleBound("multi_shop", MultiShopTE::new, () -> ROMBlocks.MULTI_SHOP).regCustomRenderer(() -> MultiShopTESR::new);
             REGISTER.registerSingleBound("equipment_triple_barrel", EquipmentTripleBarrelTE::new, () -> ROMBlocks.EQUIPMENT_TRIPLE_BARREL);
+
         }
     }
 }
