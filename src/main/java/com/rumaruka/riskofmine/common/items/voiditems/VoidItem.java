@@ -7,8 +7,8 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 import net.minecraft.world.item.ItemStack;
 
 public class VoidItem extends BaseCollectablesItem implements IVoidItem {
-    public VoidItem(Category category, int size) {
-        super(Types.VOID, category, size);
+    public VoidItem(Category category) {
+        super(Types.VOID, category);
     }
 
     @Override

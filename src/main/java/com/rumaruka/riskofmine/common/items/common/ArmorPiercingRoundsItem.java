@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ArmorPiercingRoundsItem extends BaseCollectablesItem {
     public ArmorPiercingRoundsItem() {
-        super(Types.COMMON, Category.DAMAGE, 128);
+        super(Types.COMMON, Category.DAMAGE);
     }
 
     @Override

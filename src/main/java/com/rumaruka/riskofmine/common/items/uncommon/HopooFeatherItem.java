@@ -6,6 +6,6 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 
 public class HopooFeatherItem extends BaseCollectablesItem {
     public HopooFeatherItem() {
-        super(Types.UNCOMMON, Category.UTILITY, 20);
+        super(Types.UNCOMMON, Category.UTILITY);
     }
 }

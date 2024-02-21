@@ -6,6 +6,6 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 
 public class ChronobaubleItem extends BaseCollectablesItem {
     public ChronobaubleItem() {
-        super(Types.UNCOMMON, Category.UTILITY, 64);
+        super(Types.UNCOMMON, Category.UTILITY);
     }
 }

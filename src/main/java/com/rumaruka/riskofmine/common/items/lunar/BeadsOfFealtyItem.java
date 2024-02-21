@@ -6,6 +6,6 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 
 public class BeadsOfFealtyItem extends BaseCollectablesItem {
     public BeadsOfFealtyItem() {
-        super(Types.LUNAR, Category.UTILITY, 1);
+        super(Types.LUNAR, Category.UTILITY);
     }
 }

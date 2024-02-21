@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TopazBroochItem extends BaseCollectablesItem {
     public TopazBroochItem() {
-        super(Types.COMMON, Category.UTILITY, 64);
+        super(Types.COMMON, Category.UTILITY);
     }
 
     @Override

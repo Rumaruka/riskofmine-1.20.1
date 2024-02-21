@@ -8,7 +8,10 @@
     "LevelRendererMixin",
     "LocalPlayerMixin",
     "MinecraftMixin",
-    "PlayerRendererMixin"
+    "PlayerRendererMixin",
+    "inventory.InventoryStackMixin",
+    "inventory.ItemSettingsMixin",
+    "inventory.ServerPlayNetworkDesyncFixMixin"
   ],
   "refmap": "riskofmine.mixin-refmap.json",
   "minVersion": "0.8"

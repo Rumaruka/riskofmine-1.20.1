@@ -2,6 +2,8 @@ package com.rumaruka.riskofmine.common.items;
 
 import com.rumaruka.riskofmine.api.Category;
 import com.rumaruka.riskofmine.api.Types;
+import com.rumaruka.riskofmine.init.ROMItems;
+import com.rumaruka.riskofmine.utils.ROMUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
@@ -13,15 +15,12 @@ public class BaseCollectablesItem extends Item implements ICurioItem {
     private final Types type;
     private final Category categoryEnum;
 
-    private final int sizeStack;
 
-
-    public BaseCollectablesItem(Types type, Category category, int size) {
-        super(new Properties().stacksTo(size));
+    public BaseCollectablesItem(Types type, Category category) {
+        super(new Properties());
         this.type = type;
         this.categoryEnum = category;
 
-        this.sizeStack = size;
     }
 
     @Override
@@ -30,8 +29,8 @@ public class BaseCollectablesItem extends Item implements ICurioItem {
     }
 
 
-    public int getSizeStack() {
-        return sizeStack;
+    public static int getSizeStack() {
+        return 127;
     }
 
     public Types getType() {

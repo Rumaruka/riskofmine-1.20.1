@@ -6,6 +6,6 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 
 public class PowerElixirItem extends BaseCollectablesItem {
     public PowerElixirItem() {
-        super(Types.COMMON, Category.HEALING, 64);
+        super(Types.COMMON, Category.HEALING);
     }
 }

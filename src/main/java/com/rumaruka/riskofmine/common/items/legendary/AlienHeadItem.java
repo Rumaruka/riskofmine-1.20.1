@@ -8,8 +8,9 @@ public class AlienHeadItem extends BaseCollectablesItem {
     public int cooldownMinus;
 
     public AlienHeadItem() {
-        super(Types.LEGENDARY, Category.UTILITY, 64);
+        super(Types.LEGENDARY, Category.UTILITY);
         this.cooldownMinus = getSizeStack() * 100;
 
     }
+
 }

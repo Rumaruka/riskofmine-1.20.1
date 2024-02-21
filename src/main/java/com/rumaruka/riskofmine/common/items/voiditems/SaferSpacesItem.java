@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 public class SaferSpacesItem extends VoidItem {
     public SaferSpacesItem() {
-        super(Category.HEALING, 15);
+        super(Category.HEALING);
     }
 
     @Override

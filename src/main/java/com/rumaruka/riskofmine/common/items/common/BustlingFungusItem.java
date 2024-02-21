@@ -24,7 +24,7 @@ import java.util.List;
 
 public class BustlingFungusItem extends BaseCollectablesItem {
     public BustlingFungusItem() {
-        super(Types.COMMON, Category.HEALING, 64);
+        super(Types.COMMON, Category.HEALING);
     }
 
     @Override

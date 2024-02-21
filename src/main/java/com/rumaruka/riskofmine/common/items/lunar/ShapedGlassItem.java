@@ -24,7 +24,7 @@ public class ShapedGlassItem extends BaseCollectablesItem {
     public static final UUID healthModifierID = UUID.fromString("208b4d4c-50ef-4b45-a097-4bed633cdbff");
 
     public ShapedGlassItem() {
-        super(Types.LUNAR, Category.DAMAGE, 1);
+        super(Types.LUNAR, Category.DAMAGE);
     }
 
     @Override

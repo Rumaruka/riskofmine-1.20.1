@@ -6,6 +6,6 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 
 public class EmptyElixirItem extends BaseCollectablesItem {
     public EmptyElixirItem() {
-        super(Types.COMMON, Category.SCRAP, 64);
+        super(Types.COMMON, Category.SCRAP);
     }
 }

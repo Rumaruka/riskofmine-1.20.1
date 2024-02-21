@@ -6,6 +6,6 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 
 public class DioBestFriendItem extends BaseCollectablesItem {
     public DioBestFriendItem() {
-        super(Types.LEGENDARY, Category.UTILITY, 64);
+        super(Types.LEGENDARY, Category.UTILITY);
     }
 }

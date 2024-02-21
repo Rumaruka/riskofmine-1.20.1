@@ -10,7 +10,7 @@ public class EquipmentBase extends BaseCollectablesItem {
     public int cooldownMinus;
 
     public EquipmentBase(Category categoryEnum) {
-        super(Types.EQUIPMENT, categoryEnum, 1);
+        super(Types.EQUIPMENT, categoryEnum);
         this.categoryEnum = categoryEnum;
 
     }

@@ -30,7 +30,7 @@ public class EnergyDrinkItem extends BaseCollectablesItem {
     private static final UUID SPEED_MODIFIER_SPRINTING_UUID = UUID.fromString("662A6B8D-DA3E-4C1C-8813-96EA6097278D");
 
     public EnergyDrinkItem() {
-        super(Types.COMMON, Category.UTILITY, 64);
+        super(Types.COMMON, Category.UTILITY);
     }
 
     @Override

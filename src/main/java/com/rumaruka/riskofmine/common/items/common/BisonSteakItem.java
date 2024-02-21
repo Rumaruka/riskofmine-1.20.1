@@ -6,6 +6,6 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 
 public class BisonSteakItem extends BaseCollectablesItem {
     public BisonSteakItem() {
-        super(Types.COMMON, Category.HEALING, 5);
+        super(Types.COMMON, Category.HEALING);
     }
 }

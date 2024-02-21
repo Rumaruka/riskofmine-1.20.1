@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TriTipDaggerItem extends BaseCollectablesItem {
     public TriTipDaggerItem() {
-        super(Types.COMMON, Category.DAMAGE, 64);
+        super(Types.COMMON, Category.DAMAGE);
     }
 
     @Override

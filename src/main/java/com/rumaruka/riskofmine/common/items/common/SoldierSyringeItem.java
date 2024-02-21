@@ -15,7 +15,7 @@ import java.util.List;
 
 public class SoldierSyringeItem extends BaseCollectablesItem {
     public SoldierSyringeItem() {
-        super(Types.COMMON, Category.UTILITY, 64);
+        super(Types.COMMON, Category.UTILITY);
     }
 
     @Override

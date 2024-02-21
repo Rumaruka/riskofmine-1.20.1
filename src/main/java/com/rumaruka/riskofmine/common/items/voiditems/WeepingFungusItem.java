@@ -13,7 +13,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 public class WeepingFungusItem extends VoidItem {
     public WeepingFungusItem() {
-        super(Category.HEALING, 15);
+        super(Category.HEALING);
     }
 
     @Override

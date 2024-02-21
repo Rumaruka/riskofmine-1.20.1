@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 public class TentabaubleItem extends VoidItem {
     public TentabaubleItem() {
-        super(Category.HEALING, 15);
+        super(Category.HEALING);
     }
 
     @Override

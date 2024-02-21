@@ -7,6 +7,6 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 
 public class TougherTimesItem extends BaseCollectablesItem {
     public TougherTimesItem() {
-        super(Types.COMMON, Category.UTILITY, 64);
+        super(Types.COMMON, Category.UTILITY);
     }
 }
