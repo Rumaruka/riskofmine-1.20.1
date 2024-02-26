@@ -73,45 +73,7 @@ public class ROMItems {
 
     public static LunarCoinItem LUNAR_COIN = promise();
 
-    public static ArrayList<Item> getAllItem() {
-        return (Lists.newArrayList(
 
-                ARMOR_PIERCING_ROUNDS,
-                BUSTLING_FUNGUS,
-                GASOLINE,
-                INFUSION,
-                SHAPED_GLASS,
-                SOLDIER_SYRINGE,
-                MONSTER_TOOTH,
-                CROWBAR,
-                ENERGY_DRINK,
-                BEADS_OF_FEALTY,
-                CHRONOBAUBLE,
-                BLAST_SHOWER,
-                FOCUS_CRYSTAL,
-                DIO_BEST_FRIEND,
-                ALIEN_HEAD,
-                OLD_WAR_STEALTHKIT,
-                TRI_TIP_DAGGER,
-                STUN_GRENADE,
-                WARBANNER,
-                THE_CROWDFUNDER,
-                STICKY_BOMB,
-                TOPAZ_BROOCH,
-                TENTABAUBLE,
-                BISON_STEAK,
-                COMMON_ITEM_SCRAP,
-                UNCOMMON_ITEM_SCRAP,
-                HOPOO_FEATHER,
-                WEEPING_FUNGUS,
-                POWER_ELIXIR,
-                EMPTY_ELIXIR,
-                TOUGHER_TIMES,
-                SAFER_SPACES,
-
-                LUNAR_COIN
-        ));
-    }
 
     private static class Init {
         @AutoRegistrable
@@ -152,11 +114,49 @@ public class ROMItems {
             REGISTER.register("tougher_times", TougherTimesItem::new).defaultModel(tl("item/tougher_times"));
             REGISTER.register("safer_spaces", SaferSpacesItem::new).defaultModel(tl("item/safer_spaces"));
             REGISTER.register("hopoo_feather", HopooFeatherItem::new).defaultModel(tl("item/hopoo_feather"));
-
             REGISTER.register("lunar_coin", LunarCoinItem::new);
 
 
         }
     }
 
+    public static ArrayList<Item> getAllItem() {
+        return (Lists.newArrayList(
+
+                ARMOR_PIERCING_ROUNDS,
+                BUSTLING_FUNGUS,
+                GASOLINE,
+                INFUSION,
+                SHAPED_GLASS,
+                SOLDIER_SYRINGE,
+                MONSTER_TOOTH,
+                CROWBAR,
+                ENERGY_DRINK,
+                BEADS_OF_FEALTY,
+                CHRONOBAUBLE,
+                BLAST_SHOWER,
+                FOCUS_CRYSTAL,
+                DIO_BEST_FRIEND,
+                ALIEN_HEAD,
+                OLD_WAR_STEALTHKIT,
+                TRI_TIP_DAGGER,
+                STUN_GRENADE,
+                WARBANNER,
+                THE_CROWDFUNDER,
+                STICKY_BOMB,
+                TOPAZ_BROOCH,
+                TENTABAUBLE,
+                BISON_STEAK,
+                COMMON_ITEM_SCRAP,
+                UNCOMMON_ITEM_SCRAP,
+                HOPOO_FEATHER,
+                WEEPING_FUNGUS,
+                POWER_ELIXIR,
+                EMPTY_ELIXIR,
+                TOUGHER_TIMES,
+                SAFER_SPACES,
+
+                LUNAR_COIN
+        ));
+    }
 }
