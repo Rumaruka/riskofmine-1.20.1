@@ -15,6 +15,8 @@ public class ConfigGeneral extends Config {
     public IQuickConfigValue<Integer> cooldownEq;
     public IQuickConfigValue<Long> TIME_UPDATE_TIMER; //DEFAULT after 15 minute
     public IQuickConfigValue<Integer> priceSmallChest;
+    public IQuickConfigValue<Integer> size_default;
+
 
     public ConfigGeneral(@NotNull Type type, @NotNull String key, @Nullable String comment) {
         super(type, key, comment);
@@ -45,6 +47,12 @@ public class ConfigGeneral extends Config {
                         .defineInRange("After minute: ", 15, 5, Long.MAX_VALUE)
 
         );
+        size_default = builder.optimized(
+                builder.comment("size_default")
+                        .defineInRange("size_default", 150, 50, Integer.MAX_VALUE)
+
+        );
+
 
     }
 }

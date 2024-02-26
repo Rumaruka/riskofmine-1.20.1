@@ -16,6 +16,12 @@ import java.util.List;
 public class ArmorPiercingRoundsItem extends BaseCollectablesItem {
     public ArmorPiercingRoundsItem() {
         super(Types.COMMON, Category.DAMAGE);
+        size = getSizeStack();
+    }
+
+    @Override
+    public int getSizeStack() {
+        return 200;
     }
 
     @Override

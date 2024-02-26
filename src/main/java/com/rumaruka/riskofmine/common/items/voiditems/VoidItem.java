@@ -9,7 +9,9 @@ import net.minecraft.world.item.ItemStack;
 public class VoidItem extends BaseCollectablesItem implements IVoidItem {
     public VoidItem(Category category) {
         super(Types.VOID, category);
+
     }
+
 
     @Override
     public void replaceItem(ItemStack uncorruted, ItemStack corruted) {

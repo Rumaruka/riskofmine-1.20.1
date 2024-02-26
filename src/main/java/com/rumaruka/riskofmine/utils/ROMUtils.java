@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -29,7 +30,7 @@ public class ROMUtils {
     private static MobEffectCategory category;
 
     private static final Minecraft mc = Minecraft.getInstance();
-    public static int durOld;
+    private static int durOld;
     public static int valueShields = 5;
 
 
@@ -46,6 +47,7 @@ public class ROMUtils {
     }
 
     public static Player getPlayer() {
+
         return mc.player;
     }
 

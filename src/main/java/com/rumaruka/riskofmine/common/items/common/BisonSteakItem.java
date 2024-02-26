@@ -7,5 +7,11 @@ import com.rumaruka.riskofmine.common.items.BaseCollectablesItem;
 public class BisonSteakItem extends BaseCollectablesItem {
     public BisonSteakItem() {
         super(Types.COMMON, Category.HEALING);
+        size = getSizeStack();
+    }
+
+    @Override
+    public int getSizeStack() {
+        return 100;
     }
 }

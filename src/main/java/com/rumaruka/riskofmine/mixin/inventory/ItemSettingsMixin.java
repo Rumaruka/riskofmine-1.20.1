@@ -16,6 +16,6 @@ public abstract class ItemSettingsMixin {
 
     @Inject(at = {@At("TAIL")}, method = {"<init>"})
     private void init(CallbackInfo ci) {
-        this.maxStackSize = BaseCollectablesItem.getSizeStack();
+        this.maxStackSize = BaseCollectablesItem.size;
     }
 }
