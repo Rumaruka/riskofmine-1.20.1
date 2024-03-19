@@ -16,6 +16,7 @@ import java.util.List;
 public class MonsterToothItem extends BaseCollectablesItem {
     public MonsterToothItem() {
         super(Types.COMMON, Category.HEALING);
+
     }
 
     @Override

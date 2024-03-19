@@ -15,7 +15,8 @@ public interface InventoryStackMixin extends Clearable {
      */
     @Overwrite
     default int getMaxStackSize() {
-        return BaseCollectablesItem.size;
+
+        return 500;
     }
 
 }

@@ -29,7 +29,7 @@ public abstract class BaseCollectablesItem extends Item implements ICurioItem {
         this.type = type;
         this.categoryEnum = category;
 
-        size = getSizeStack();
+        setSizeStack(size);
 
 
     }
@@ -42,7 +42,7 @@ public abstract class BaseCollectablesItem extends Item implements ICurioItem {
 
     public int getSizeStack() {
 
-        return ROMConfig.GENERAL.size_default.get();
+        return size;
     }
 
     public void setSizeStack(int sizeS) {
